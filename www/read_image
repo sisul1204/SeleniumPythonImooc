@@ -1,0 +1,17 @@
+#coding=utf-8
+import pytesseract
+from PIL import Image
+from ShowapiRequest import ShowapiRequest
+
+
+
+image = Image.open('E:/immoc1.png')
+text = pytesseract.image_to_string(image)
+print(text)
+
+r = ShowapiRequest("http://route.showapi.com/184-5","75939","734014a3cdd44a05be2ce47661ec7be9" )
+r.addBodyPara("typeId", "35")
+r.addBodyPara("convert_to_jpg", "0")
+r.addBodyPara("image", r"E:/immoc1.png")
+res = r.post()
+print(res.text) # 返回信息
